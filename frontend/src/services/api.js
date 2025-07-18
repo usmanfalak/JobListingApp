@@ -56,4 +56,13 @@ export const jobsApi = {
   deleteJob: async (id) => {
     await api.delete(`/jobs/${id}`);
   },
+<<<<<<< HEAD
+=======
+  
+  // Scrape jobs from ActuaryList
+  scrapeJobs: async (maxJobs = 20) => {
+    const response = await api.post("/scrape-jobs", { max_jobs: maxJobs });
+    return response.data;
+  },
+>>>>>>> 5461b45f (web scrapper added)
 };

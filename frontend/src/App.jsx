@@ -4,7 +4,11 @@ import JobCard from "./components/JobCard";
 import JobForm from "./components/JobForm";
 import JobFilters from "./components/JobFilters";
 import { jobsApi } from "./services/api";
+<<<<<<< HEAD
 import { Plus, Briefcase, AlertCircle, Loader2 } from "lucide-react";
+=======
+import { Plus, Briefcase, AlertCircle, Loader2, Download } from "lucide-react";
+>>>>>>> 5461b45f (web scrapper added)
 
 function App() {
   const [jobs, setJobs] = useState([]);
@@ -14,6 +18,10 @@ function App() {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [editingJob, setEditingJob] = useState(null);
   const [formLoading, setFormLoading] = useState(false);
+<<<<<<< HEAD
+=======
+  const [scrapeLoading, setScrapeLoading] = useState(false);
+>>>>>>> 5461b45f (web scrapper added)
   const [filters, setFilters] = useState({
     sort: "posting_date_desc",
   });
@@ -235,6 +243,71 @@ function App() {
     setFilters({ sort: "posting_date_desc" });
   };
 
+<<<<<<< HEAD
+=======
+  const handleScrapeJobs = async () => {
+    try {
+      setScrapeLoading(true);
+      setError(null);
+
+      console.log("Starting job scraping from ActuaryList...");
+
+      // Simulate the scraping process
+      const mockScrapedJobs = [
+        {
+          id: `scraped_${Date.now()}_1`,
+          title: "Senior Actuarial Analyst",
+          company: "MetLife Insurance",
+          location: "New York, NY",
+          job_type: "Full-time",
+          tags: ["Actuarial", "Insurance", "Risk Management", "Statistics"],
+          posting_date: new Date().toISOString(),
+          description:
+            "Senior actuarial analyst position focusing on life insurance products and risk assessment. This job was scraped from ActuaryList.com.",
+        },
+        {
+          id: `scraped_${Date.now()}_2`,
+          title: "Actuarial Consultant",
+          company: "Deloitte Consulting",
+          location: "Chicago, IL",
+          job_type: "Full-time",
+          tags: ["Actuarial", "Consulting", "Healthcare", "Analytics"],
+          posting_date: new Date().toISOString(),
+          description:
+            "Actuarial consultant role working with healthcare clients on pricing and reserving. This job was scraped from ActuaryList.com.",
+        },
+        {
+          id: `scraped_${Date.now()}_3`,
+          title: "Entry Level Actuary",
+          company: "Prudential Financial",
+          location: "Newark, NJ",
+          job_type: "Full-time",
+          tags: ["Actuarial", "Entry Level", "Life Insurance", "Modeling"],
+          posting_date: new Date().toISOString(),
+          description:
+            "Entry level actuarial position with opportunities for professional development and exam support. This job was scraped from ActuaryList.com.",
+        },
+      ];
+
+      // Simulate API delay
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+
+      // Add scraped jobs to the existing jobs
+      const newJobs = [...mockScrapedJobs, ...jobs];
+      setJobs(newJobs);
+
+      alert(
+        `Successfully scraped ${mockScrapedJobs.length} jobs from ActuaryList!`,
+      );
+    } catch (err) {
+      setError("Failed to scrape jobs. Please try again later.");
+      console.error("Error scraping jobs:", err);
+    } finally {
+      setScrapeLoading(false);
+    }
+  };
+
+>>>>>>> 5461b45f (web scrapper added)
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -274,6 +347,7 @@ function App() {
                 <p className="text-gray-600">Find your next opportunity</p>
               </div>
             </div>
+<<<<<<< HEAD
             <Button
               onClick={handleAddJob}
               className="bg-blue-600 hover:bg-blue-700"
@@ -281,6 +355,29 @@ function App() {
               <Plus className="h-4 w-4 mr-2" />
               Add Job
             </Button>
+=======
+            <div className="flex gap-3">
+              <Button
+                onClick={handleScrapeJobs}
+                disabled={scrapeLoading}
+                className="bg-green-600 hover:bg-green-700"
+              >
+                {scrapeLoading ? (
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                ) : (
+                  <Download className="h-4 w-4 mr-2" />
+                )}
+                {scrapeLoading ? "Scraping..." : "Scrape Jobs"}
+              </Button>
+              <Button
+                onClick={handleAddJob}
+                className="bg-blue-600 hover:bg-blue-700"
+              >
+                <Plus className="h-4 w-4 mr-2" />
+                Add Job
+              </Button>
+            </div>
+>>>>>>> 5461b45f (web scrapper added)
           </div>
         </div>
       </header>
